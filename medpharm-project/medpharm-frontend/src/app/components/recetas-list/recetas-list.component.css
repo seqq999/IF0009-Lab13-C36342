@@ -1,0 +1,28 @@
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filtros {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.lista-meds {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.acciones {
+  white-space: nowrap;
+}
+
+.acciones .btn + .btn {
+  margin-left: 0.35rem;
+}

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.medpharm.medpharm_backend.domain.model.DetalleReceta;
 import com.medpharm.medpharm_backend.domain.model.Medicamento;
@@ -56,7 +57,9 @@ public class RecetaService {
 
     @Transactional
     public RecetaDTO createReceta(RecetaRequestDTO dto) {
-        Usuario medico = getMedico(dto.medicoId());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario medico = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RecetaException("Usuario autenticado no encontrado"));
 
         RecetaMedica receta = new RecetaMedica(
                 generarCodigo(),

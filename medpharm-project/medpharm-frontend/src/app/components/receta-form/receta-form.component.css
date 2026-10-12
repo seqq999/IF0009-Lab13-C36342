@@ -1,0 +1,44 @@
+.seccion-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.renglon {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.campo {
+  flex: 1 1 160px;
+}
+.campo-med {
+  flex: 2 1 220px;
+}
+.campo-cant {
+  flex: 0 1 110px;
+}
+.campo-dosis {
+  flex: 2 1 220px;
+}
+
+.quitar {
+  align-self: flex-end;
+  margin-bottom: 0.1rem;
+}
+
+.barra-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}

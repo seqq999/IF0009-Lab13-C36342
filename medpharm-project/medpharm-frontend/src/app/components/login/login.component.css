@@ -1,0 +1,28 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.login-card h1 {
+  color: #1f4e78;
+  text-align: center;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #6b7280;
+  margin: 0 0 1rem;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 1rem;
+}

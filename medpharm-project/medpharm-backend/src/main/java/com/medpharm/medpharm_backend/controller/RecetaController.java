@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
 
 import com.medpharm.medpharm_backend.domain.model.RecetaMedica;
 import com.medpharm.medpharm_backend.dto.RecetaRequestDTO;
@@ -36,7 +36,7 @@ public class RecetaController {
     }
 
     @GetMapping("estado/{estado}")
-    public List<RecetaMedica> findAllByEstado(@RequestParam String estado) {
+    public List<RecetaMedica> findAllByEstado(@PathVariable String estado) {
         return recetaService.findAllByEstado(estado);
     }
 
@@ -47,7 +47,7 @@ public class RecetaController {
     }
 
     @PatchMapping("/{id}/estado")
-    public RecetaDTO actualizarEstado(@PathVariable Long id, @RequestParam String estado){
-        return recetaService.actualizarEstado(id, estado);
+    public RecetaDTO actualizarEstado(@PathVariable Long id, @RequestBody Map<String, String> body){
+        return recetaService.actualizarEstado(id, body.get("estado"));
     } 
 }

@@ -1,0 +1,87 @@
+<div class="contenedor">
+  <h1>Nueva receta</h1>
+
+  <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <label for="paciente">Nombre del paciente</label>
+    <input id="paciente" type="text" formControlName="pacienteNombre" />
+    @if (paciente.touched && paciente.hasError('required')) {
+      <small class="error">El nombre del paciente es obligatorio</small>
+    }
+    @if (paciente.touched && paciente.hasError('minlength')) {
+      <small class="error">Debe tener al menos 5 caracteres</small>
+    }
+
+    <div class="seccion-titulo">
+      <h2>Medicamentos</h2>
+      <button type="button" class="btn btn-secundario btn-sm" (click)="agregarDetalle()">
+        + Agregar medicamento
+      </button>
+    </div>
+
+    <div formArrayName="detalles">
+      @for (detalle of detalles.controls; track detalle; let i = $index) {
+        <div class="renglon" [formGroupName]="i">
+          <div class="campo campo-med">
+            <label [for]="'med-' + i">Medicamento</label>
+            <select [id]="'med-' + i" formControlName="medicamentoId">
+              <option [ngValue]="null" disabled>Seleccione...</option>
+              @for (m of medicamentos(); track m.id) {
+                <option [ngValue]="m.id">{{ m.nombre }} (stock: {{ m.stock }})</option>
+              }
+            </select>
+            @if (detalle.controls.medicamentoId.touched && detalle.controls.medicamentoId.invalid) {
+              <small class="error">Seleccione un medicamento</small>
+            }
+          </div>
+
+          <div class="campo campo-cant">
+            <label [for]="'cant-' + i">Cantidad</label>
+            <input [id]="'cant-' + i" type="number" step="1" min="1" formControlName="cantidad" />
+            @if (detalle.controls.cantidad.touched && detalle.controls.cantidad.invalid) {
+              <small class="error">
+                @if (detalle.controls.cantidad.hasError('required')) {
+                  La cantidad es obligatoria
+                } @else {
+                  Debe ser un entero mayor a 0
+                }
+              </small>
+            }
+          </div>
+
+          <div class="campo campo-dosis">
+            <label [for]="'dosis-' + i">Dosis indicada</label>
+            <input
+              [id]="'dosis-' + i"
+              type="text"
+              placeholder="Ej: 1 tableta cada 8 horas"
+              formControlName="dosisIndicada"
+            />
+            @if (detalle.controls.dosisIndicada.touched && detalle.controls.dosisIndicada.invalid) {
+              <small class="error">La dosis es obligatoria</small>
+            }
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-peligro btn-sm quitar"
+            [disabled]="detalles.length === 1"
+            (click)="quitarDetalle(i)"
+          >
+            Quitar
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (error()) {
+      <div class="alert-error">{{ error() }}</div>
+    }
+
+    <div class="barra-acciones">
+      <a routerLink="/recetas" class="btn btn-secundario">Cancelar</a>
+      <button type="submit" class="btn btn-primario" [disabled]="guardando()">
+        {{ guardando() ? 'Guardando...' : 'Guardar receta' }}
+      </button>
+    </div>
+  </form>
+</div>

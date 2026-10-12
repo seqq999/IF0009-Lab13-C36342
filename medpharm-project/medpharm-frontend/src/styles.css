@@ -1,1 +1,183 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --azul: #1f4e78;
+  --borde: #d1d5db;
+  --fondo: #f4f6f9;
+  --rojo: #b91c1c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--fondo);
+  color: #1f2937;
+}
+
+h1,
+h2 {
+  margin: 0 0 0.5rem;
+}
+
+.contenedor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--azul);
+  border-color: transparent;
+}
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: var(--rojo);
+}
+
+.error {
+  display: block;
+  color: var(--rojo);
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+.alert-error {
+  background: #fee2e2;
+  color: var(--rojo);
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  margin: 0.75rem 0;
+}
+.vacio {
+  color: #6b7280;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-sm {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.85rem;
+}
+.btn-primario {
+  background: var(--azul);
+  color: #fff;
+}
+.btn-primario:hover:not(:disabled) {
+  background: #173b5a;
+}
+.btn-secundario {
+  background: #fff;
+  color: var(--azul);
+  border-color: var(--azul);
+}
+.btn-ok {
+  background: #166534;
+  color: #fff;
+}
+.btn-peligro {
+  background: var(--rojo);
+  color: #fff;
+}
+
+/* Filtros */
+.chip {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+}
+.chip.activo {
+  background: var(--azul);
+  color: #fff;
+  border-color: var(--azul);
+}
+
+/* Tabla */
+.tabla-wrapper {
+  overflow-x: auto;
+  padding: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+th,
+td {
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+th {
+  background: #eef3f8;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+/* Badges de estado */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.badge-pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge-despachada {
+  background: #dcfce7;
+  color: #166534;
+}
+.badge-cancelada {
+  background: #fee2e2;
+  color: #b91c1c;
+}

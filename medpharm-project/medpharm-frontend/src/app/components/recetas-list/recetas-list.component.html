@@ -1,0 +1,85 @@
+<div class="contenedor">
+  <div class="encabezado">
+    <h1>Recetas médicas</h1>
+    <a routerLink="/nueva-receta" class="btn btn-primario">+ Nueva receta</a>
+  </div>
+
+  <div class="filtros">
+    @for (f of filtros; track f) {
+      <button type="button" class="chip" [class.activo]="filtro() === f" (click)="filtro.set(f)">
+        {{ f }}
+      </button>
+    }
+  </div>
+
+  @if (error()) {
+    <div class="alert-error">{{ error() }}</div>
+  }
+
+  <div class="card tabla-wrapper">
+    @if (cargando()) {
+      <p class="vacio">Cargando recetas...</p>
+    } @else if (recetasFiltradas().length === 0) {
+      <p class="vacio">No hay recetas para mostrar.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Fecha</th>
+            <th>Medicamentos</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of recetasFiltradas(); track r.id) {
+            <tr>
+              <td>{{ r.codigoReceta }}</td>
+              <td>{{ r.pacienteNombre }}</td>
+              <td>{{ r.medicoNombre }}</td>
+              <td>{{ r.fechaEmision | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td>
+                <ul class="lista-meds">
+                  @for (d of r.detalles; track d.id) {
+                    <li>
+                      {{ d.medicamentoNombre }} × {{ d.cantidad }}
+                      <small>({{ d.dosisIndicada }})</small>
+                    </li>
+                  }
+                </ul>
+              </td>
+              <td>
+                <span [class]="claseEstado(r.estado)">{{ r.estado }}</span>
+              </td>
+              <td class="acciones">
+                @if (r.estado === 'PENDIENTE') {
+                  <button
+                    type="button"
+                    class="btn btn-ok btn-sm"
+                    [disabled]="procesandoId() === r.id"
+                    (click)="cambiarEstado(r, 'DESPACHADA')"
+                  >
+                    Despachar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-peligro btn-sm"
+                    [disabled]="procesandoId() === r.id"
+                    (click)="cambiarEstado(r, 'CANCELADA')"
+                  >
+                    Cancelar
+                  </button>
+                } @else {
+                  <span class="vacio">—</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>
