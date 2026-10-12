@@ -1,73 +1,73 @@
-# MedpharmFrontend
+# MedPharm Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli), versión 22.1.8.
 
-## Development server
+## Servidor de desarrollo
 
-To start a local development server, run:
+Para iniciar el servidor local de desarrollo, ejecuta:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Cuando el servidor esté funcionando, abre el navegador en `http://localhost:4200/`. La aplicación se recargará automáticamente cada vez que modifiques los archivos fuente.
 
-## Code scaffolding
+## Generación de componentes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Angular CLI incluye herramientas para generar componentes. Para generar un componente nuevo, ejecuta:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Para consultar la lista completa de esquemas disponibles, como `components`, `directives` o `pipes`, ejecuta:
 
 ```bash
 ng generate --help
 ```
 
-## Building
+## Compilación
 
-To build the project run:
+Para compilar el proyecto, ejecuta:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Esto compilará el proyecto y guardará los archivos generados en la carpeta `dist/`. De forma predeterminada, la compilación de producción optimiza la aplicación para mejorar su rendimiento.
 
-## Running unit tests
+## Pruebas unitarias
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Para ejecutar las pruebas unitarias con [Vitest](https://vitest.dev/), ejecuta:
 
 ```bash
 ng test
 ```
 
-## Depuracion de autenticacion JWT
+## Depuración de autenticación JWT
 
-El endpoint `GET /api/v1/recetas` esta protegido por Spring Security. Para comprobar el rechazo de una peticion sin credenciales, se puede quitar temporalmente `authInterceptor` de `src/app/app.config.ts`, iniciar sesion y navegar a la lista de recetas. La solicitud aparece en la pestaña **Network** sin el encabezado `Authorization` y el backend responde `401 Unauthorized` (o `403 Forbidden`, segun la configuracion de seguridad).
+El endpoint `GET /api/v1/recetas` está protegido por Spring Security. Para comprobar el rechazo de una petición sin credenciales, se puede quitar temporalmente `authInterceptor` de `src/app/app.config.ts`, iniciar sesión y navegar a la lista de recetas. La solicitud aparece en la pestaña **Network** sin el encabezado `Authorization` y el backend responde `401 Unauthorized` (o `403 Forbidden`, según la configuración de seguridad).
 
-La causa es que el navegador no envia automaticamente el JWT almacenado en `localStorage`. El interceptor agrega el encabezado requerido a cada solicitud de la API, excepto al login:
+La causa es que el navegador no envía automáticamente el JWT almacenado en `localStorage`. El interceptor agrega el encabezado requerido a cada solicitud de la API, excepto durante el inicio de sesión:
 
 ```http
 Authorization: Bearer <token>
 ```
 
-Con `authInterceptor` registrado mediante `provideHttpClient(withInterceptors([authInterceptor]))`, el backend puede validar el token y permite acceder a `/api/v1/recetas`. La configuracion debe quedar restaurada despues de la prueba.
+Con `authInterceptor` registrado mediante `provideHttpClient(withInterceptors([authInterceptor]))`, el backend puede validar el token y permite acceder a `/api/v1/recetas`. La configuración debe quedar restaurada después de la prueba.
 
 La captura de la respuesta no autorizada debe guardarse en `docs/error_jwt_401.png`.
 
-## Running end-to-end tests
+## Pruebas de extremo a extremo
 
-For end-to-end (e2e) testing, run:
+Para ejecutar las pruebas de extremo a extremo (e2e), ejecuta:
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Angular CLI no incluye un framework de pruebas e2e de forma predeterminada. Puedes elegir el que mejor se adapte a las necesidades del proyecto.
 
-## Additional Resources
+## Recursos adicionales
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para obtener más información sobre Angular CLI, incluida la referencia detallada de comandos, visita la página [Descripción general y referencia de comandos de Angular CLI](https://angular.dev/tools/cli).
