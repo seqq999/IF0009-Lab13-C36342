@@ -58,16 +58,3 @@ Con `authInterceptor` registrado mediante `provideHttpClient(withInterceptors([a
 
 La captura de la respuesta no autorizada debe guardarse en `docs/error_jwt_401.png`.
 
-## Pruebas de extremo a extremo
-
-Para ejecutar las pruebas de extremo a extremo (e2e), ejecuta:
-
-```bash
-ng e2e
-```
-
-Angular CLI no incluye un framework de pruebas e2e de forma predeterminada. Puedes elegir el que mejor se adapte a las necesidades del proyecto.
-
-## Recursos adicionales
-
-Para obtener más información sobre Angular CLI, incluida la referencia detallada de comandos, visita la página [Descripción general y referencia de comandos de Angular CLI](https://angular.dev/tools/cli).
